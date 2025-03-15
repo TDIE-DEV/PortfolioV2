@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env > /var/www/html/.env
 
 RUN pwd
-RUN ls
+RUN ls --all
 RUN ls ./vendor
 
 EXPOSE 80
