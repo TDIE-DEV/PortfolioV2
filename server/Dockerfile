@@ -20,12 +20,16 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 RUN a2enmod rewrite
 
-COPY . /var/www/html
+# First copy only the necessary files for composer install
+COPY composer.json composer.lock /var/www/html/
 
+# Run composer install to generate vendor and autoload files
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN ls
+# Now copy the rest of the application files (including source code)
+COPY . /var/www/html
 
+RUN ls
 RUN ls ./vendor
 
 EXPOSE 80
