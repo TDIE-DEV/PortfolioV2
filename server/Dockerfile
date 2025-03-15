@@ -23,7 +23,7 @@ RUN a2enmod rewrite
 # First copy only the necessary files for composer install
 COPY composer.json composer.lock /var/www/html/
 
-RUN composer config enable-plugins true
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Run composer install to generate vendor and autoload files
 RUN composer install --no-dev --optimize-autoloader --no-interaction --with-all-dependencies -vvv
