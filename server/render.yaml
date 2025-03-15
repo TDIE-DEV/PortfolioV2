@@ -1,0 +1,45 @@
+services:
+  # PHP Service
+  - name: symfony-php
+    type: web
+    env: php
+    build:
+      dockerfilePath: Dockerfile
+      envVars:
+        - key: MYSQL_USER
+          value: ${MYSQL_USER}
+        - key: MYSQL_PASSWORD
+          value: ${MYSQL_PASSWORD}
+        - key: MYSQL_DATABASE
+          value: ${MYSQL_DATABASE}
+    envVars:
+      - key: APP_ENV
+        value: production
+    plan: free
+    ports:
+      - port: 80
+        targetPort: 80
+    healthCheckPath: /
+
+  # MySQL Database Service
+  - name: symfony-db
+    type: database
+    env: mysql
+    plan: free
+    envVars:
+      - key: MYSQL_DATABASE
+        value: ${MYSQL_DATABASE}
+      - key: MYSQL_USER
+        value: ${MYSQL_USER}
+      - key: MYSQL_PASSWORD
+        value: ${MYSQL_PASSWORD}
+      - key: MYSQL_ALLOW_EMPTY_PASSWORD
+        value: "no"
+    connectionDetails:
+      host: symfony-db
+      port: 3306
+    restartPolicy: always
+
+volumes:
+  - name: db_data
+    type: volume
