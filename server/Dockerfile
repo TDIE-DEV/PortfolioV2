@@ -27,9 +27,6 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN ls
 
 RUN ls ./vendor
-# RUN mkdir -p /var/www/html/var/cache /var/www/html/var/log && \
-#     chown -R www-data:www-data /var/www/html/var && \
-#     chmod -R 775 /var/www/html/var
 
 EXPOSE 80
 
