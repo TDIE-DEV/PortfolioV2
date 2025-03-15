@@ -12,6 +12,8 @@ services:
           value: ${MYSQL_PASSWORD}
         - key: MYSQL_DATABASE
           value: ${MYSQL_DATABASE}
+        - key: DATABASE_URL
+          value: ${DATABASE_URL}
     envVars:
       - key: APP_ENV
         value: production
