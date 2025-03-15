@@ -24,7 +24,6 @@ RUN a2enmod rewrite
 COPY composer.json composer.lock /var/www/html/
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV APP_ENV=prod
 
 # Run composer install to generate vendor and autoload files
 RUN composer install --no-dev --optimize-autoloader --no-interaction
@@ -34,6 +33,7 @@ COPY . /var/www/html
 
 RUN ls
 RUN ls ./vendor
+RUN ls /etc/secrets/
 
 EXPOSE 80
 
