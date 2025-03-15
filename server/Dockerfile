@@ -31,14 +31,13 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Now copy the rest of the application files (including source code)
 COPY . /var/www/html
 
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env ls /etc/secrets/.env
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env > /var/www/html/.env
 
 RUN pwd
 RUN ls
 RUN ls ./vendor
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env ls /etc/secrets/.env
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
-
 
 EXPOSE 80
 
