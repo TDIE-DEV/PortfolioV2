@@ -98,9 +98,6 @@
     },
     "post-update-cmd": [
       "@auto-scripts"
-    ],
-    "symfony-auto-load": [
-      "symfony/runtime:autoload"
     ]
   },
   "conflict": {

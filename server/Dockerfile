@@ -26,10 +26,12 @@ COPY composer.json composer.lock /var/www/html/
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Run composer install to generate vendor and autoload files
-RUN composer install --no-dev --optimize-autoloader --no-interaction -vvv
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Now copy the rest of the application files (including source code)
 COPY . /var/www/html
+
+COPY /etc/secrets/.env /var/www/html/.env
 
 RUN ls
 RUN ls ./vendor
