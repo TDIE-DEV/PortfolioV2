@@ -24,7 +24,7 @@ RUN a2enmod rewrite
 COPY composer.json composer.lock /var/www/html/
 
 # Run composer install to generate vendor and autoload files
-RUN composer install --no-dev --optimize-autoloader --no-interaction -vvv
+RUN composer install --no-dev --optimize-autoloader --no-interaction --with-all-dependencies -vvv
 
 # Now copy the rest of the application files (including source code)
 COPY . /var/www/html
