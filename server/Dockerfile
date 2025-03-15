@@ -36,6 +36,8 @@ RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cp /etc/secrets/.env /var/
 RUN ls
 RUN ls ./vendor
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env ls /etc/secrets/.env
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
+
 
 EXPOSE 80
 
